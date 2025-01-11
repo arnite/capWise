@@ -7,9 +7,13 @@ module.exports = [
       prettier: eslintPluginPrettier,
     },
     rules: {
-      'prettier/prettier': ['error', { trailingComma: 'es5' }],
+      'prettier/prettier': [
+        'error',
+        { trailingComma: 'es5', endOfLine: 'auto' },
+      ],
       'comma-dangle': ['off'],
-      'no-unused-vars': 'error',
+      'no-unused-vars': 'warn',
+      'linebreak-style': 'off',
     },
     languageOptions: {
       parserOptions: {
