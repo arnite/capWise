@@ -19,8 +19,8 @@ router.use(protect);
 router.get('/getMyInvestment', restrictTo('broker'), getMyInvestment);
 
 router
-  .route('/:investmentId')
-  .get(restrictTo('admin'), getInvestment)
+  .route('/:id')
+  .get(getInvestment)
   .patch(restrictTo('broker'), updateInvestment)
   .delete(restrictTo('broker'), deleteInvestment);
 

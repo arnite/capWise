@@ -7,6 +7,7 @@ const {
   forgotPassword,
   resetPassword,
   updateMyPassword,
+  createBroker,
 } = require('../controllers/authController');
 const {
   updateUser,
@@ -25,6 +26,7 @@ router.post('/signUp', signUp);
 router.post('/login', login);
 router.post('/forgotPassword', forgotPassword);
 router.post('/resetPassword/:token', resetPassword);
+router.post('/createBroker', createBroker);
 
 //Routes that require login access
 router.use(protect);

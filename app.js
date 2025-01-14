@@ -14,6 +14,8 @@ const globalerrorhandler = require('./controllers/errorController.js');
 const superAdmin = require('./config/superAdmin');
 const userRoute = require('./routes/userRoute.js');
 const investmentRoute = require('./routes/investmentRoute.js');
+const portfolioRoute = require('./routes/portfolioRoute.js');
+const transactionRoute = require('./routes/transactionRoute.js');
 
 // Integrate database
 integrateDB();
@@ -79,6 +81,8 @@ app.get('/cancel', (req, res) => {
 // Main Routes
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/investments', investmentRoute);
+app.use('/api/v1/portfolio', portfolioRoute);
+app.use('/api/v1/transactions', transactionRoute);
 
 // Unresolved Route
 app.all('*', (req, res, next) => {

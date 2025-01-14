@@ -4,15 +4,15 @@ const AppError = require('./../utils/appError');
 const APIFeatures = require('./../utils/apiFeatures');
 const { getOne, getAll, createOne } = require('./handlerFactory');
 
-exports.updateInvestment = catchAsync(async (req, res) => {
+exports.updateInvestment = catchAsync(async (req, res, next) => {
   //Retrieve investment.
-  const investment = await Investment.findById(req.params);
+  const investment = await Investment.findById(req.params.id);
 
   if (investment.createdBy != req.user.id) {
     return next(new AppError('You can only update your investment', 403));
   }
 
-  const updatedInvestment = await Investment.findByIdAndUpdate(req.params);
+  const updatedInvestment = await Investment.findByIdAndUpdate(req.params.id);
 
   res.status(201).json({
     status: 'success',
@@ -20,9 +20,9 @@ exports.updateInvestment = catchAsync(async (req, res) => {
   });
 });
 
-exports.deleteInvestment = catchAsync(async (req, res) => {
+exports.deleteInvestment = catchAsync(async (req, res, next) => {
   //Retrieve investment.
-  const investment = await Investment.findById(req.params);
+  const investment = await Investment.findById(req.params.id);
 
   if (investment.createdBy != req.user.id) {
     return next(new AppError('You can only delete your investment', 403));
@@ -47,7 +47,7 @@ exports.getMyInvestment = catchAsync(async (req, res) => {
 
   const doc = await features.query;
 
-  res.status(201).json({
+  res.status(200).json({
     status: 'success',
     data: doc,
   });

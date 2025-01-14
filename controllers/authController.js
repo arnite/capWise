@@ -46,7 +46,9 @@ exports.signUp = catchAsync(async (req, res, next) => {
     });
   } catch (err) {
     return next(
-      new AppError('There was an error sending the email. Try again later!')
+      new AppError(
+        `There was an error sending the email. Try again later!: ${err}`
+      )
     );
   }
 
@@ -180,7 +182,9 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
       await user.save({ validateBeforeSave: false });
 
     return next(
-      new AppError('There was an error sending the email. Try again later!')
+      new AppError(
+        `There was an error sending the email. Try again later!: ${err}`
+      )
     );
   }
 });
@@ -230,4 +234,43 @@ exports.updateMyPassword = catchAsync(async (req, res, next) => {
 
   //Log user in, Send Token.
   createSendToken(user, 200, res);
+});
+
+exports.createBroker = catchAsync(async (req, res, next) => {
+  const newBroker = await User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirm: req.body.passwordConfirm,
+    role: 'broker',
+  });
+
+  //Send email to user and the token
+  try {
+    await sendEmail({
+      email: newBroker.email,
+      subject: 'SignUp successful',
+      message: 'You have successfully signed up to capWise as a Broker.',
+    });
+  } catch (err) {
+    return next(
+      new AppError(
+        `There was an error sending the email. Try again later!: ${err}`
+      )
+    );
+  }
+
+  //Create token
+  const token = signToken(newBroker._id);
+
+  //Remove password from output
+  newBroker.password = undefined;
+
+  //Send token and user
+  res.status(201).json({
+    status: 'success',
+    message: 'Broker successfully created',
+    token,
+    data: newBroker,
+  });
 });

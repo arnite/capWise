@@ -3,48 +3,51 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Investor  must have a name.'],
-  },
-  email: {
-    type: String,
-    required: [true, 'Investor must have an email.'],
-    unique: true,
-    lowercase: true,
-    validate: [validator.isEmail, 'Please input a valid email.'],
-  },
-  role: {
-    type: String,
-    enum: ['investor', 'broker', 'admin', 'superAdmin'],
-    default: 'investor',
-  },
-  password: {
-    type: String,
-    required: [true, 'Please input a password.'],
-    select: false,
-    minlength: 8,
-  },
-  passwordConfirm: {
-    type: String,
-    required: [true, 'Please confirm your password.'],
-    validate: {
-      validator: function (el) {
-        return el === this.password;
-      },
-      message: 'Passwords do not match.',
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Investor  must have a name.'],
     },
+    email: {
+      type: String,
+      required: [true, 'Investor must have an email.'],
+      unique: true,
+      lowercase: true,
+      validate: [validator.isEmail, 'Please input a valid email.'],
+    },
+    role: {
+      type: String,
+      enum: ['investor', 'broker', 'admin', 'superAdmin'],
+      default: 'investor',
+    },
+    password: {
+      type: String,
+      required: [true, 'Please input a password.'],
+      select: false,
+      minlength: 8,
+    },
+    passwordConfirm: {
+      type: String,
+      required: [true, 'Please confirm your password.'],
+      validate: {
+        validator: function (el) {
+          return el === this.password;
+        },
+        message: 'Passwords do not match.',
+      },
+    },
+    active: {
+      type: Boolean,
+      default: true,
+      select: false,
+    },
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
   },
-  active: {
-    type: Boolean,
-    default: true,
-    select: false,
-  },
-  passwordChangedAt: Date,
-  passwordResetToken: String,
-  passwordResetExpires: Date,
-});
+  { timestamps: true }
+);
 
 userSchema.pre('save', async function (next) {
   //Check if password was modified
