@@ -3,12 +3,11 @@ const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 
 exports.createPortfolio = catchAsync(async (req, res) => {
-  const { investmentId, amountInvested } = req.body;
+  const { investmentId } = req.body;
 
   const portfolio = new Portfolio({
     user: req.user.id,
     investment: investmentId,
-    amountInvested,
   });
 
   await portfolio.save();
