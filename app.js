@@ -16,6 +16,7 @@ const userRoute = require('./routes/userRoute.js');
 const investmentRoute = require('./routes/investmentRoute.js');
 const portfolioRoute = require('./routes/portfolioRoute.js');
 const transactionRoute = require('./routes/transactionRoute.js');
+const paymentRoute = require('./routes/paymentRoute.js');
 
 // Integrate database
 integrateDB();
@@ -83,6 +84,7 @@ app.use('/api/v1/users', userRoute);
 app.use('/api/v1/investments', investmentRoute);
 app.use('/api/v1/portfolio', portfolioRoute);
 app.use('/api/v1/transactions', transactionRoute);
+app.use('/api/v1/payments', paymentRoute);
 
 // Unresolved Route
 app.all('*', (req, res, next) => {

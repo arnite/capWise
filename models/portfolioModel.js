@@ -14,7 +14,7 @@ const PortfolioSchema = new mongoose.Schema(
     },
     amountInvested: {
       type: Number,
-      default: 0,
+      min: 5,
     },
     returns: {
       type: Number,

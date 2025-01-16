@@ -16,10 +16,6 @@ const TransactionSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    transactionDate: {
-      type: Date,
-      default: Date.now,
-    },
     status: {
       type: String,
       enum: ['pending', 'successful'],
