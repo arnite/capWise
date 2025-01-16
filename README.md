@@ -92,6 +92,7 @@ http://localhost:3000
 - **DELETE /api/v1/users/:id**: Delete a user by ID.
 - **POST /api/v1/investments**: Create an investment (only accessible to Brokers)
 - **GET /api/v1/investments**: Retrieve all investments.
+- **GET /api/v1/getMyInvestment**: Retrieve all investments of a Broker (only accessbile to Brokers)
 - **GET /api/v1/investments/:id**: Get details of a specific investment by ID.
 - **PATCH /api/v1/investments/:id**: Update details of a specific investment by ID (only accessible to Brokers)
 - **DELETE /api/v1/investments/:id**: Delete an investment by ID (only accessible to Brokers)
