@@ -76,32 +76,102 @@ http://localhost:3000
 
 ## 5. API Endpoints
 
-- **POST /api/v1/users/signUp**: Register a new user.
-- **POST /api/v1/users/createAdmin**: Create an admin (only accessible by superAdmin.)
-- **POST /api/v1/users/createBroker** Create a Broker
-- **POST /api/v1/users/login**: Log in a user and return a JWT token.
-- **POST /api/v1/users/forgotPassword**: Request password reset.
-- **POST /api/v1/users/resetPassword/**:token: Reset the user's password using a reset token.
-- **POST /api/v1/users/updateMyPassword**: Update the user's password.
-- **POST /api/v1/users/updateMe**: Update the user's profile.
-- **GET /api/v1/users/me**: Get details of the currently authenticated user.
-- **DELETE /api/v1/users/deleteMe**: Delete the currently authenticated user.
-- **GET /api/v1/users**: Get a list of all users (only accessible by admin and superadmin).
-- **GET /api/v1/users/:id**: Get details of a specific user by ID.
-- **PATCH /api/v1/users/:id**: Update details of a specific user by ID.
-- **DELETE /api/v1/users/:id**: Delete a user by ID.
-- **POST /api/v1/investments**: Create an investment (only accessible to Brokers)
-- **GET /api/v1/investments**: Retrieve all investments.
-- **GET /api/v1/getMyInvestment**: Retrieve all investments of a Broker (only accessbile to Brokers)
-- **GET /api/v1/investments/:id**: Get details of a specific investment by ID.
-- **PATCH /api/v1/investments/:id**: Update details of a specific investment by ID (only accessible to Brokers)
-- **DELETE /api/v1/investments/:id**: Delete an investment by ID (only accessible to Brokers)
-- **POST /api/v1/portfolio**: Create a Portfolio (only accessible to investors)
-- **GET /api/v1/portfolio**: Retrieve all Portfolio for a specific Investor.
-- **POST /api/v1/transactions**: Create a transaction record (only accessible to Investors)
-- **GET /api/v1/transactions**: Get all transaction records (only accessible to Investors)
-- **POST /api/v1/payments/webhook**: Stripe webhook endpoint for handling incoming events (such as payment success or failure).
-- **GET /api/v1/payments/checkoutSession/:portfolioId**: Get a Stripe checkout session for a specific portfolio (requires authentication).
+### **User Authentication & Management**
+
+- **POST `/api/v1/users/signUp`**  
+  _Register a new user._
+
+- **POST `/api/v1/users/createAdmin`**  
+  _Create an admin (only accessible by superAdmin)._
+
+- **POST `/api/v1/users/createBroker`**  
+  _Create a broker account._
+
+- **POST `/api/v1/users/login`**  
+  _Log in a user and return a JWT token._
+
+- **POST `/api/v1/users/forgotPassword`**  
+  _Request a password reset by providing an email._
+
+- **POST `/api/v1/users/resetPassword/:token`**  
+  _Reset the user's password using a reset token sent to their email._
+
+- **POST `/api/v1/users/updateMyPassword`**  
+  _Logged-in users can update their passwords._
+
+- **PATCH `/api/v1/users/updateMe`**  
+  _Update the logged-in user's profile information (name, email, etc.)._
+
+- **GET `/api/v1/users/me`**  
+  _Retrieve details of the currently authenticated user._
+
+- **DELETE `/api/v1/users/deleteMe`**  
+  _Delete the currently authenticated user's account._
+
+- **GET `/api/v1/users`**  
+  _Get a list of all registered users (only accessible by admin or superAdmin)._
+
+- **GET `/api/v1/users/:id`**  
+  _Get details of a specific user by their ID._
+
+- **PATCH `/api/v1/users/:id`**  
+  _Update user details by ID (only accessible by admin)._
+
+- **DELETE `/api/v1/users/:id`**  
+  _Delete a specific user by ID (only accessible by admin)._
+
+---
+
+### **Investment Management**
+
+- **POST `/api/v1/investments`**  
+  _Create an investment (only accessible to brokers)._
+
+- **GET `/api/v1/investments`**  
+  _Retrieve a list of all investments._
+
+- **GET `/api/v1/getMyInvestment`**  
+  _Retrieve all investments of the logged-in broker (only accessible to brokers)._
+
+- **GET `/api/v1/investments/:id`**  
+  _Retrieve details of a specific investment by ID._
+
+- **PATCH `/api/v1/investments/:id`**  
+  _Update the details of a specific investment (only accessible to brokers)._
+
+- **DELETE `/api/v1/investments/:id`**  
+  _Delete a specific investment (only accessible to brokers)._
+
+---
+
+### **Portfolio Management**
+
+- **POST `/api/v1/portfolio`**  
+  _Create a portfolio (only accessible to investors)._
+
+- **GET `/api/v1/portfolio`**  
+  _Retrieve all portfolios for the logged-in investor._
+
+---
+
+### **Transaction Management**
+
+- **POST `/api/v1/transactions`**  
+  _Create a transaction record (only accessible to investors)._
+
+- **GET `/api/v1/transactions`**  
+  _Retrieve all transaction records for the logged-in investor._
+
+---
+
+### **Payment Processing**
+
+- **POST `/api/v1/payments/webhook`**  
+  _Stripe webhook endpoint for handling incoming events (such as payment success or failure)._
+
+- **GET `/api/v1/payments/checkoutSession/:portfolioId`**  
+  _Generate a Stripe checkout session for a specific portfolio (requires authentication)._
+
 
 ## 6. Contributing
 
