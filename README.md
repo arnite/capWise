@@ -74,7 +74,7 @@ npm start
 The server should now be running on
 http://localhost:3000
 
-5. API Endpoints
+## 5. API Endpoints
 
 - **POST /api/v1/users/signUp**: Register a new user.
 - **POST /api/v1/users/createAdmin**: Create an admin (only accessible by superAdmin.)
@@ -103,7 +103,7 @@ http://localhost:3000
 - **POST /api/v1/payments/webhook**: Stripe webhook endpoint for handling incoming events (such as payment success or failure).
 - **GET /api/v1/payments/checkoutSession/:portfolioId**: Get a Stripe checkout session for a specific portfolio (requires authentication).
 
-6. Contributing
+## 6. Contributing
 
 - **Fork the repository.**
 - **Create a new branch (git checkout -b feature-name).**
@@ -111,6 +111,10 @@ http://localhost:3000
 - **Push to the branch (git push origin feature-name).**
 - **Create a new Pull Request.**
 
-6. License
+## 7. You can view the live version of the app here:
+
+[capWise - Live API](https://capwise.onrender.com)
+
+## 9. License
 
 - **This project is licensed under the MIT License - see the LICENSE file for details.**
