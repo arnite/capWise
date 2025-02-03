@@ -111,8 +111,8 @@ http://localhost:3000
 - **Push to the branch (git push origin feature-name).**
 - **Create a new Pull Request.**
 
-## 7. You can view the live version of the app here:
-
+## 7. Deployed App 
+ You can view the live version of the app here:
 [capWise - Live API](https://capwise.onrender.com)
 
 ## 9. License
