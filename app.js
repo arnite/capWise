@@ -70,7 +70,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.send(`
     <div style="margin-top: 20px;">
-      <h1 style="color: blue; font-size: 2em;"><strong>API Running...</strong></h1>
+      <h1 style="color: blue; font-size: 2em;"><strong>API is Running...</strong></h1>
     </div>
   `);
 });
