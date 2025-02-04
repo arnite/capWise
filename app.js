@@ -68,7 +68,11 @@ app.use((req, res, next) => {
 
 // Test Route
 app.get('/', (req, res) => {
-  res.send('API running..');
+  res.send(`
+    <div style="margin-top: 20px;">
+      <h1 style="color: blue; font-size: 2em;"><strong>API Running...</strong></h1>
+    </div>
+  `);
 });
 
 app.get('/success', (req, res) => {
